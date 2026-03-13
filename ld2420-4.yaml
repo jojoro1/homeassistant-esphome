@@ -103,7 +103,13 @@ sensor:
   - platform: dallas_temp
     name: "Temperatura"
     update_interval: 15s
-    resolution: 11
+    resolution: 12 
+    filters:
+      - sliding_window_moving_average:
+          window_size: 4
+          send_every: 1
+      - round: 1
+      - offset: 0.5
 binary_sensor:
   - platform: ld2420
     has_target:
